@@ -1,0 +1,50 @@
+version: "3"
+
+services:
+  app:
+    container_name: ecommerce_app
+    build: 
+      context: ./.docker/
+    command: sh -c "npm install && npm start"
+    environment:
+      - NODE_ENV=${NODE_ENV}
+    ports:
+      - "${PORT}:3333"
+    volumes: 
+      - .:/home/app
+      - /home/app/node_modules
+    links:
+      - postgres
+      - mongo
+      - redis
+    depends_on:
+      - postgres
+      - mongo
+      - redis
+
+  postgres:
+    container_name: ecommerce_postgres
+    image: "postgres:9.4"
+    volumes:
+      - ./.docker/postgres:/var/lib/postgresql/data
+    ports:
+      - "${DB_PORT}:5432"
+    environment:
+     POSTGRES_PASSWORD: ${DB_PASS}
+     POSTGRES_USER: ${DB_USER}
+
+  mongo:
+    container_name: ecommerce_mongo
+    image: mongo
+    volumes:
+      - ./.docker/mongo:/data/db
+    ports:
+      - "${MONGO_PORT}:27017"
+
+  redis:
+    container_name: ecommerce_redis
+    image: redis
+    volumes:
+      - ./.docker/redis:/redis/db
+    ports:
+      - "${REDIS_PORT}:6379"

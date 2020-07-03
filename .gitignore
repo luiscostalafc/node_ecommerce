@@ -1,0 +1,11 @@
+node_modules
+build
+dist
+coverage
+.vscode
+.DS_STORE
+.env
+tmp
+.docker/postgres
+.docker/mongo
+.docker/redis
