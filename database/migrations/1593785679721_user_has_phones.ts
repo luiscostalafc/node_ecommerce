@@ -5,8 +5,11 @@ export default class UserHasPhones extends BaseSchema {
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id')
-      table.timestamps(true)
+      table.integer('user_id').unsigned().notNullable()
+      table.integer('phone_id').unsigned().notNullable()
+
+      table.foreign('user_id').references('id').inTable('users').onDelete('CASCADE')
+      table.foreign('phone_id').references('id').inTable('phones').onDelete('CASCADE')
     })
   }
 

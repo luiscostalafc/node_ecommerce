@@ -10,4 +10,7 @@ export default class OrderStatus extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  @column()
+  public order_status: string
 }

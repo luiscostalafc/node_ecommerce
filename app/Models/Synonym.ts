@@ -1,5 +1,6 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, hasOne, HasOne } from '@ioc:Adonis/Lucid/Orm'
+import Product from './Product'
 
 export default class Synonym extends BaseModel {
   @column({ isPrimary: true })
@@ -10,4 +11,13 @@ export default class Synonym extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  @column()
+  public synonym: string
+
+  @column()
+  public product_id: number
+
+  @hasOne(() => Product)
+  public product: HasOne<typeof Product>
 }

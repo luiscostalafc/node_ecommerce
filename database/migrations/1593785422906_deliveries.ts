@@ -6,6 +6,8 @@ export default class Deliveries extends BaseSchema {
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
+      table.string('delivery').notNullable()
+      table.boolean('inactive').notNullable().defaultTo(false)
       table.timestamps(true)
     })
   }

@@ -10,4 +10,22 @@ export default class Phone extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  @column()
+  public type: string
+
+  @column()
+  public area_code: string
+
+  @column()
+  public phone: string
+
+  @column()
+  public whatsapp: boolean
+
+  @column()
+  public inactive: boolean
+
+  @column()
+  public obs: string
 }

@@ -30,7 +30,7 @@ services:
     ports:
       - "${DB_PORT}:5432"
     environment:
-     POSTGRES_PASSWORD: ${DB_PASS}
+     POSTGRES_PASSWORD: ${DB_PASSWORD}
      POSTGRES_USER: ${DB_USER}
 
   mongo:

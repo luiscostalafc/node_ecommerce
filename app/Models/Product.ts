@@ -1,5 +1,7 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, hasOne, HasOne } from '@ioc:Adonis/Lucid/Orm'
+import Group from './Group'
+import Subgroup from './Subgroup'
 
 export default class Product extends BaseModel {
   @column({ isPrimary: true })
@@ -10,4 +12,19 @@ export default class Product extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  @column()
+  public inactive: boolean
+
+  @column()
+  public group_id: number
+
+  @column()
+  public subgroup_id: number
+
+  @hasOne(() => Group)
+  public group: HasOne<typeof Group>
+
+  @hasOne(() => Subgroup)
+  public subgroup: HasOne<typeof Subgroup>
 }

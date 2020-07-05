@@ -10,4 +10,7 @@ export default class Subgroup extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  @column()
+  public subgroup: string
 }

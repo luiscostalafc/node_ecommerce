@@ -6,6 +6,8 @@ export default class UserGroups extends BaseSchema {
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
+      table.string('group').notNullable()
+      table.boolean('is_visible').notNullable().defaultTo(true)
       table.timestamps(true)
     })
   }

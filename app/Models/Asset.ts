@@ -10,4 +10,11 @@ export default class Asset extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  @column()
+  public asset: string
+  @column()
+  public mime: string
+  @column()
+  public path: string
 }

@@ -6,6 +6,7 @@ export default class Groups extends BaseSchema {
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
+      table.string('group').notNullable()
       table.timestamps(true)
     })
   }

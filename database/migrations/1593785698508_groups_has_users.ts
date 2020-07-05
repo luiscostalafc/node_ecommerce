@@ -5,8 +5,11 @@ export default class GroupsHasUsers extends BaseSchema {
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id')
-      table.timestamps(true)
+      table.integer('group_id').unsigned().notNullable()
+      table.integer('user_id').unsigned().notNullable()
+
+      table.foreign('group_id').references('id').inTable('groups').onDelete('CASCADE')
+      table.foreign('user_id').references('id').inTable('users').onDelete('CASCADE')
     })
   }
 

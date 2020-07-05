@@ -5,8 +5,11 @@ export default class CardHasUsers extends BaseSchema {
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id')
-      table.timestamps(true)
+      table.integer('card_id').unsigned().notNullable()
+      table.integer('user_id').unsigned().notNullable()
+
+      table.foreign('card_id').references('id').inTable('cards').onDelete('CASCADE')
+      table.foreign('user_id').references('id').inTable('users').onDelete('CASCADE')
     })
   }
 

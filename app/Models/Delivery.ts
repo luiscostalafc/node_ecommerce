@@ -10,4 +10,10 @@ export default class Delivery extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  @column()
+  public delivery: string
+
+  @column()
+  public inactive: boolean
 }
