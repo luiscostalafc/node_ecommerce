@@ -1,7 +1,8 @@
 import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
+import { PermissionFactory } from 'Database/factories'
 
-export default class PermissionSeederSeeder extends BaseSeeder {
+export default class PermissionSeeder extends BaseSeeder {
   public async run () {
-    // Write your database queries inside the run method
+    PermissionFactory.createMany(10)
   }
 }

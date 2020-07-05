@@ -39,7 +39,7 @@ export default class Address extends BaseModel {
   public complement: string
 
   @column()
-  public delivery: string
+  public delivery: boolean
 
   @column()
   public inactive: boolean

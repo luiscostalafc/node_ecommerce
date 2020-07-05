@@ -34,7 +34,7 @@ export default class ProductDescription extends BaseModel {
   public color: string
 
   @column()
-  public materia: string
+  public material: string
 
   @column()
   public obs: string

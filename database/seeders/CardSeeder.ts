@@ -1,7 +1,8 @@
 import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
+import { CardFactory } from 'Database/factories'
 
-export default class CardSeederSeeder extends BaseSeeder {
+export default class CardSeeder extends BaseSeeder {
   public async run () {
-    // Write your database queries inside the run method
+    CardFactory.createMany(10)
   }
 }

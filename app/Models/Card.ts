@@ -36,5 +36,5 @@ export default class Card extends BaseModel {
   public holder_cpf: string
 
   @column()
-  public holder_birth_date: string
+  public holder_birth_date: Date
 }

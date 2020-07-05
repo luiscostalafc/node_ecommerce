@@ -1,7 +1,8 @@
 import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
+import { ProductDimensionFactory } from 'Database/factories'
 
-export default class ProductDimensionSeederSeeder extends BaseSeeder {
+export default class ProductDimensionSeeder extends BaseSeeder {
   public async run () {
-    // Write your database queries inside the run method
+    ProductDimensionFactory.createMany(10)
   }
 }

@@ -1,7 +1,8 @@
 import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
+import { AddressFactory } from 'Database/factories'
 
 export default class AddressSeeder extends BaseSeeder {
   public async run () {
-    // Write your database queries inside the run method
+    AddressFactory.createMany(10)
   }
 }

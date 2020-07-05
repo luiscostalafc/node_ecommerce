@@ -1,7 +1,8 @@
 import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
+import { SynonymFactory } from 'Database/factories'
 
-export default class SynonymSeederSeeder extends BaseSeeder {
+export default class SynonymSeeder extends BaseSeeder {
   public async run () {
-    // Write your database queries inside the run method
+    SynonymFactory.createMany(10)
   }
 }

@@ -25,10 +25,10 @@ export default class OrderDetail extends BaseModel {
   public extra_amount: string
 
   @column()
-  public intallment_quantity: string
+  public intallment_quantity: number
 
   @column()
-  public intallment_value: string
+  public intallment_value: number
 
   @column()
   public order_id: number

@@ -1,7 +1,8 @@
 import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
+import { OrderDetailFactory } from 'Database/factories'
 
-export default class OrderDetailSeederSeeder extends BaseSeeder {
+export default class OrderDetailSeeder extends BaseSeeder {
   public async run () {
-    // Write your database queries inside the run method
+    OrderDetailFactory.createMany(10)
   }
 }

@@ -1,7 +1,8 @@
 import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
+import { SubgroupFactory } from 'Database/factories'
 
-export default class SubgroupSeederSeeder extends BaseSeeder {
+export default class SubgroupSeeder extends BaseSeeder {
   public async run () {
-    // Write your database queries inside the run method
+    SubgroupFactory.createMany(10)
   }
 }

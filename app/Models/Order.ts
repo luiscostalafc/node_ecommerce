@@ -15,16 +15,16 @@ export default class Order extends BaseModel {
   public updatedAt: DateTime
 
   @column()
-  public userId: number
+  public user_id: number
 
   @column()
-  public providerId: number
+  public provider_id: number
 
   @column()
-  public order_statusId: number
+  public order_status_id: number
 
   @column()
-  public deliveryId: number
+  public delivery_id: number
 
   @hasOne(() => User)
   public user: HasOne<typeof User>

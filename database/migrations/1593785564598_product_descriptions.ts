@@ -13,7 +13,7 @@ export default class ProductDescriptions extends BaseSchema {
       table.string('position').notNullable()
       table.string('system').notNullable()
       table.string('color').notNullable()
-      table.string('materia').notNullable()
+      table.string('material').notNullable()
       table.text('obs')
 
       table.foreign('product_id').references('id').inTable('products').onDelete('CASCADE')
