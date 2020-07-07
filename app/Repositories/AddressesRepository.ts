@@ -1,4 +1,12 @@
 // import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-export default class AddressesRepository {
+import BaseRepository from './BaseRepository'
+import Address from 'App/Models/Address'
+
+export default class AddressesRepository extends BaseRepository{
+  protected model
+  constructor (model: Address) {
+    super()
+    this.model = model
+  }
 }

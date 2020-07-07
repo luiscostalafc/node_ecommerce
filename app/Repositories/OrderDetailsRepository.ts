@@ -1,4 +1,10 @@
-// import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import BaseRepository from './BaseRepository'
+import OrderDetail from 'App/Models/OrderDetail'
 
-export default class OrderDetailsRepository {
+export default class OrderDetailsRepository extends BaseRepository{
+  protected model
+  constructor (model: OrderDetail) {
+    super()
+    this.model = model
+  }
 }
