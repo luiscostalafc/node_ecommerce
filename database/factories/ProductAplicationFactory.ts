@@ -1,10 +1,10 @@
 import Factory from '@ioc:Adonis/Lucid/Factory'
 import ProductAplication from 'App/Models/ProductAplication'
-import { randomProductId } from './ProductFactoryFactory'
+// import { randomProductId } from './ProductFactoryFactory'
 
 export const ProductAplicationFactory = Factory
   .define(ProductAplication, ({ faker }) => ({
-    product_id: randomProductId,
+    // product_id: randomProductId,
     automaker: faker.random.arrayElement(['GM', 'Renault', 'Ferrari', 'Dodge']),
     model: faker.name.title(),
     year_start: faker.random.number(2035),

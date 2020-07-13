@@ -1,10 +1,10 @@
 import Factory from '@ioc:Adonis/Lucid/Factory'
 import ProductDimension from 'App/Models/ProductDimension'
-import { randomProductId } from './ProductFactoryFactory'
+// import { randomProductId } from './ProductFactoryFactory'
 
 export const ProductDimensionFactory = Factory
   .define(ProductDimension, ({ faker }) => ({
-    product_id: randomProductId,
+    // product_id: randomProductId,
     size: faker.random.number(200),
     height: faker.random.number(200),
     width: faker.random.number(200),

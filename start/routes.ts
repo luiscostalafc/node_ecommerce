@@ -42,4 +42,4 @@ Route
     Route.resource('users','UserController').apiOnly()
   })
   .prefix('/v1')
-  .middleware('auth')
+  // .middleware('auth')

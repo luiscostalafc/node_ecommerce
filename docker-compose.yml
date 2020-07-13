@@ -1,26 +1,26 @@
 version: "3"
 
 services:
-  app:
-    container_name: ecommerce_app
-    build: 
-      context: ./.docker/
-    command: sh -c "npm install && npm start"
-    environment:
-      - NODE_ENV=${NODE_ENV}
-    ports:
-      - "${PORT}:3333"
-    volumes: 
-      - .:/home/app
-      - /home/app/node_modules
-    links:
-      - postgres
-      - mongo
-      - redis
-    depends_on:
-      - postgres
-      - mongo
-      - redis
+  # app:
+  #   container_name: ecommerce_app
+  #   build: 
+  #     context: ./.docker/
+  #   command: sh -c "npm install && npm start"
+  #   environment:
+  #     - NODE_ENV=${NODE_ENV}
+  #   ports:
+  #     - "${PORT}:3333"
+  #   volumes: 
+  #     - .:/home/app
+  #     - /home/app/node_modules
+  #   links:
+  #     - postgres
+  #     - mongo
+  #     - redis
+  #   depends_on:
+  #     - postgres
+  #     - mongo
+  #     - redis
 
   postgres:
     container_name: ecommerce_postgres

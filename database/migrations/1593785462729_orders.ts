@@ -15,7 +15,7 @@ export default class Orders extends BaseSchema {
 
       table.foreign('user_id').references('id').inTable('users').onDelete('CASCADE')
       table.foreign('provider_id').references('id').inTable('users').onDelete('CASCADE')
-      table.foreign('order_status_id').references('id').inTable('order_status').onDelete('CASCADE')
+      table.foreign('order_status_id').references('id').inTable('order_statuses').onDelete('CASCADE')
       table.foreign('delivery_id').references('id').inTable('deliveries').onDelete('CASCADE')
     })
   }

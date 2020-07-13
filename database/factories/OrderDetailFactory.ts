@@ -1,6 +1,6 @@
 import Factory from '@ioc:Adonis/Lucid/Factory'
 import OrderDetail from 'App/Models/OrderDetail'
-import { randomOrderId } from './OrderFactory'
+// import { randomOrderId } from './OrderFactory'
 
 export const OrderDetailFactory = Factory
   .define(OrderDetail, ({ faker }) => ({
@@ -10,7 +10,7 @@ export const OrderDetailFactory = Factory
     extra_amount: faker.finance.amount(1),
     intallment_quantity: faker.random.number(12),
     intallment_value: faker.random.number(999),
-    order_id: randomOrderId,
+    // order_id: randomOrderId,
   }))
   .build()
 
