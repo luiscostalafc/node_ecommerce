@@ -8,9 +8,14 @@ export default class BaseRepository {
   protected statusCode = 400
   protected options = 0
 
+  constructor (Model) {
+    this.model = new Model()
+  }
+
   public logError (func, error) {
     Logger.warn(`Repository ${func} Error: ${error}`)
   }
+
   public first () {
     try{
       this.obj = this.model.first()
@@ -20,12 +25,12 @@ export default class BaseRepository {
       this.contentError = error
     }
     return Response.mountReturn({
-      typeFunction:'load',
-      data:this.obj,
-      status:this.statusCode,
-      contentError:this.contentError,
+      typeFunction: 'load',
+      data: this.obj,
+      status: this.statusCode,
+      contentError: this.contentError,
       showMessage: true,
-      options:0,
+      options: 0,
     })
   }
 

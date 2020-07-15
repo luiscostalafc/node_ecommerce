@@ -3,7 +3,7 @@ import { BaseModel, column, hasOne, HasOne } from '@ioc:Adonis/Lucid/Orm'
 import Operation from './Operation'
 import Product from './Product'
 
-export default class StockOperatation extends BaseModel {
+export default class StockOperation extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 import transations from '../../config/transations'
-type TypeFunction = 'login'|'load'|'found'|'create'|'update'|'delete' |'restore'|'forceDelete'
+export type TypeFunction = 'login'|'load'|'found'|'create'|'update'|'delete' |'restore'|'forceDelete'
 
 class Response {
   public mountReturn (
@@ -46,10 +46,10 @@ class Response {
   }
 
   private getHappen (status: number): string {
-    return (status > 200 && status < 300) ? 'error' : 'success'
+    return (status > 200 && status < 300) ? 'success' : 'error'
   }
 
-  private getMessage (typeFunction: TypeFunction, happen: string, showMessage: boolean): string {
+  public getMessage (typeFunction: TypeFunction, happen: string, showMessage: boolean): string {
     if (!showMessage) {
       return ''
     }

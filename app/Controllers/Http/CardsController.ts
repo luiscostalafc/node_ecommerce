@@ -2,40 +2,45 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import CardsRepository from 'App/Repositories/CardsRepository'
-import CardValidator from 'App/Validators/CardValidator'
+import { CardSchema } from 'App/Validators'
 
 export default class CardsController {
-  protected repository
-  protected validator
-  constructor (repository: CardsRepository, validator: CardValidator) {
-    this.repository = repository
-    this.validator = validator
+  private readonly repository
+  constructor () {
+    this.repository = CardsRepository
   }
 
   async index ({ response }: HttpContextContract) {
     const register = await this.repository.all()
     const { returnType, message, contentError } = register.headers
     return response
-      .safeHeader(returnType, returnType)
-      .safeHeader(message, message)
-      .safeHeader(contentError, contentError)
+      .safeHeader('returnType', returnType)
+      .safeHeader('message', message)
+      .safeHeader('contentError', contentError)
       .status(register.status)
       .json(register.data)
   }
 
   async store ({ request, response }: HttpContextContract) {
     try {
-      await request.validate({schema: this.validator.schema})
+      await request.validate({schema: CardSchema})
     } catch (error) {
-      response.status(422).send(error.messages)
+      const msg = error.messages.errors.map(e => `${e.field} is ${e.rule}`).join(', ')
+      // console.log(error.messages.errors)
+      return response
+        .safeHeader('returnType', 'error')
+        .safeHeader('message', 'Validation error')
+        .safeHeader('contentError', msg)
+        .status(422)
+        .json({})
     }
 
-    const register = await this.repository.store(request.all)
+    const register = await this.repository.create(request.all())
     const { returnType, message, contentError } = register.headers
     return response
-      .safeHeader(returnType, returnType)
-      .safeHeader(message, message)
-      .safeHeader(contentError, contentError)
+      .safeHeader('returnType', returnType)
+      .safeHeader('message', message)
+      .safeHeader('contentError', contentError)
       .status(register.status)
       .json(register.data)
   }
@@ -44,26 +49,33 @@ export default class CardsController {
     const register = await this.repository.findById(request.id)
     const { returnType, message, contentError } = register.headers
     return response
-      .safeHeader(returnType, returnType)
-      .safeHeader(message, message)
-      .safeHeader(contentError, contentError)
+      .safeHeader('returnType', returnType)
+      .safeHeader('message', message)
+      .safeHeader('contentError', contentError)
       .status(register.status)
       .json(register.data)
   }
 
   async update ({ request, response }: HttpContextContract) {
     try {
-      await request.validate({schema: this.validator.schema})
+      await request.validate({schema: CardSchema})
     } catch (error) {
-      response.status(422).send(error.messages)
+      const msg = error.messages.errors.map(e => `${e.field} is ${e.rule}`).join(', ')
+      // console.log(error.messages.errors)
+      return response
+        .safeHeader('returnType', 'error')
+        .safeHeader('message', 'Validation error')
+        .safeHeader('contentError', msg)
+        .status(422)
+        .json({})
     }
 
     const register = await this.repository.findAndUpdate(request.id, request.all)
     const { returnType, message, contentError } = register.headers
     return response
-      .safeHeader(returnType, returnType)
-      .safeHeader(message, message)
-      .safeHeader(contentError, contentError)
+      .safeHeader('returnType', returnType)
+      .safeHeader('message', message)
+      .safeHeader('contentError', contentError)
       .status(register.status)
       .json(register.data)
   }
@@ -72,9 +84,9 @@ export default class CardsController {
     const register = await this.repository.findAndDelete(request.id)
     const { returnType, message, contentError } = register.headers
     return response
-      .safeHeader(returnType, returnType)
-      .safeHeader(message, message)
-      .safeHeader(contentError, contentError)
+      .safeHeader('returnType', returnType)
+      .safeHeader('message', message)
+      .safeHeader('contentError', contentError)
       .status(register.status)
       .json(register.data)
   }

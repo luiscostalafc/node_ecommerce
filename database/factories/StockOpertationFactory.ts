@@ -1,5 +1,5 @@
 import Factory from '@ioc:Adonis/Lucid/Factory'
-import StockOperation from 'App/Models/StockOperatation'
+import StockOperation from 'App/Models/StockOperation'
 // import { randomOperationId } from './OperationFactory'
 // import { randomProductId } from './ProductFactoryFactory'
 

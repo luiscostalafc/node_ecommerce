@@ -25,7 +25,6 @@ Route.get('/', async () => {
 })
 Route
   .group(() => {
-    Route.resource('posts', 'PostsController').apiOnly()
     Route.resource('addresses','AddressesController').apiOnly()
     Route.resource('assests','AssetsController').apiOnly()
     Route.resource('cards','CardsController').apiOnly()
