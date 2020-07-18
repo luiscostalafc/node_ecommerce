@@ -4,7 +4,7 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import PhonesRepository from 'App/Repositories/PhonesRepository'
 import { PhoneSchema } from 'App/Validators'
 
-export default class PhoneesController {
+export default class PhonesController {
   private readonly repository
   constructor () {
     this.repository = PhonesRepository
@@ -12,13 +12,13 @@ export default class PhoneesController {
 
   async index ({ response }: HttpContextContract) {
     const register = await this.repository.all()
-    const { returnType, message, contentError } = register.headers
+    const { data, statusCode, returnType, message, contentError } = register
     return response
       .safeHeader('returnType', returnType)
       .safeHeader('message', message)
       .safeHeader('contentError', contentError)
-      .status(register.status)
-      .json(register.data)
+      .status(statusCode)
+      .json(data)
   }
 
   async store ({ request, response }: HttpContextContract) {
@@ -36,32 +36,31 @@ export default class PhoneesController {
     }
 
     const register = await this.repository.create(request.all())
-    const { returnType, message, contentError } = register.headers
+    const { data, statusCode, returnType, message, contentError } = register
     return response
       .safeHeader('returnType', returnType)
       .safeHeader('message', message)
       .safeHeader('contentError', contentError)
-      .status(register.status)
-      .json(register.data)
+      .status(statusCode)
+      .json(data)
   }
 
-  async show ({ request, response }: HttpContextContract) {
-    const register = await this.repository.findById(request.id)
-    const { returnType, message, contentError } = register.headers
+  async show ({ params, response }: HttpContextContract) {
+    const register = await this.repository.find(params.id)
+    const { data, statusCode, returnType, message, contentError } = register
     return response
       .safeHeader('returnType', returnType)
       .safeHeader('message', message)
       .safeHeader('contentError', contentError)
-      .status(register.status)
-      .json(register.data)
+      .status(statusCode)
+      .json(data)
   }
 
-  async update ({ request, response }: HttpContextContract) {
+  async update ({ params, request, response }: HttpContextContract) {
     try {
       await request.validate({schema: PhoneSchema})
     } catch (error) {
       const msg = error.messages.errors.map(e => `${e.field} is ${e.rule}`).join(', ')
-      // console.log(error.messages.errors)
       return response
         .safeHeader('returnType', 'error')
         .safeHeader('message', 'Validation error')
@@ -70,24 +69,24 @@ export default class PhoneesController {
         .json({})
     }
 
-    const register = await this.repository.findAndUpdate(request.id, request.all)
-    const { returnType, message, contentError } = register.headers
+    const register = await this.repository.findAndUpdate(params.id, request.all())
+    const { data, statusCode, returnType, message, contentError } = register
     return response
       .safeHeader('returnType', returnType)
       .safeHeader('message', message)
       .safeHeader('contentError', contentError)
-      .status(register.status)
-      .json(register.data)
+      .status(statusCode)
+      .json(data)
   }
 
-  async destroy ({ request, response }: HttpContextContract) {
-    const register = await this.repository.findAndDelete(request.id)
-    const { returnType, message, contentError } = register.headers
+  async destroy ({ params, response }: HttpContextContract) {
+    const register = await this.repository.findAndDelete(params.id)
+    const { data, statusCode, returnType, message, contentError } = register
     return response
       .safeHeader('returnType', returnType)
       .safeHeader('message', message)
       .safeHeader('contentError', contentError)
-      .status(register.status)
-      .json(register.data)
+      .status(statusCode)
+      .json(data)
   }
 }

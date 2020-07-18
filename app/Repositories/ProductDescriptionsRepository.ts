@@ -2,9 +2,9 @@
 import Logger from '@ioc:Adonis/Core/Logger'
 
 import { first, all, create, findAndUpdate, find, createOrUpdate, findAndDelete } from '../Services/CRUD'
-import Card from 'App/Models/Card'
+import ProductDescription from 'App/Models/ProductDescription'
 
-class CardsRepository {
+class ProductDescriptionsRepository {
   protected model: any
   protected obj = []
   protected contentError = []
@@ -17,7 +17,7 @@ class CardsRepository {
   }
 
   constructor () {
-    this.model = Card
+    this.model = ProductDescription
   }
 
   async first () {
@@ -49,4 +49,4 @@ class CardsRepository {
   }
 }
 
-export default new CardsRepository()
+export default new ProductDescriptionsRepository()
