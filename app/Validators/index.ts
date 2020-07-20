@@ -1,5 +1,6 @@
 export * from './AddressSchema'
 export * from './AssetSchema'
+export * from './AuthSchema'
 export * from './CardSchema'
 export * from './DeliverySchema'
 export * from './GroupSchema'

@@ -69,12 +69,14 @@ export default class AssetsController {
   async show ({ params, response }: HttpContextContract) {
     const register = await this.repository.find(params.id)
     const { data, statusCode, returnType, message, contentError } = register
+    const path = `${Application.tmpPath('uploads')}/${data.path}`
+
     return response
       .safeHeader('returnType', returnType)
       .safeHeader('message', message)
       .safeHeader('contentError', contentError)
       .status(statusCode)
-      .json(data)
+      .attachment(path)
   }
 
   async update ({ params, request, response }: HttpContextContract) {

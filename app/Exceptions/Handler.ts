@@ -22,8 +22,13 @@ export default class ExceptionHandler extends HttpExceptionHandler {
   }
 
   public async handle (error, ctx) {
-    if (error.code === 'E_VALIDATION_FAILURE') {
-      return ctx.response.status(422).send(error.messages)
+    if (error.code === 'E_UNAUTHORIZED_ACCESS') {
+      return ctx.response
+        .safeHeader('returnType', 'error')
+        .safeHeader('message', 'User not logged')
+        .safeHeader('contentError', 'Not authorized')
+        .status(401)
+        .json({})
     }
 
     return super.handle(error, ctx)

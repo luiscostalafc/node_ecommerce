@@ -23,6 +23,9 @@ import Route from '@ioc:Adonis/Core/Route'
 Route.get('/', async () => {
   return { hello: 'world' }
 })
+Route.post('/login', 'AuthController.login')
+Route.post('/logout', 'AuthController.logout')
+
 Route
   .group(() => {
     Route.resource('addresses','AddressesController').apiOnly()
@@ -47,4 +50,4 @@ Route
     Route.resource('users','UsersController').apiOnly()
   })
   .prefix('/v1')
-  // .middleware('auth')
+  .middleware('auth')

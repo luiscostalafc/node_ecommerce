@@ -17,6 +17,7 @@ export default class Users extends BaseSchema {
       table.string('nick')
       table.boolean('is_provider').notNullable().defaultTo(false)
       table.boolean('inactive').notNullable().defaultTo(false)
+      // table.string('remember_me_token').nullable()
       table.timestamps(true)
     })
   }
