@@ -8,7 +8,7 @@ export default class ProductDescriptions extends BaseSchema {
       table.increments('id')
       table.integer('product_id').unsigned().notNullable()
       table.string('title').notNullable()
-      table.string('product').notNullable()
+      table.string('name').notNullable()
       table.string('type').notNullable()
       table.string('position').notNullable()
       table.string('system').notNullable()

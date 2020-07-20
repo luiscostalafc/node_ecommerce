@@ -6,5 +6,5 @@ export const PhoneSchema = schema.create({
   phone: schema.string(),
   whatsapp: schema.boolean(),
   inactive: schema.boolean(),
-  obs: schema.string(),
+  obs: schema.string.optional(),
 })

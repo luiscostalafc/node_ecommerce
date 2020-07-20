@@ -1,6 +1,6 @@
 import { schema, rules } from '@ioc:Adonis/Core/Validator'
 
-export const ProductAplicationSchema = schema.create({
+export const ProductApplicationSchema = schema.create({
   product_id: schema.number([
     rules.exists({ table: 'products', column: 'id' }),
   ]),

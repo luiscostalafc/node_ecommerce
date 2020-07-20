@@ -8,7 +8,7 @@ export const OrderSchema = schema.create({
     rules.exists({ table: 'users', column: 'id' }),
   ]),
   order_status_id: schema.number([
-    rules.exists({ table: 'orders', column: 'id' }),
+    rules.exists({ table: 'order_statuses', column: 'id' }),
   ]),
   delivery_id: schema.number([
     rules.exists({ table: 'deliveries', column: 'id' }),

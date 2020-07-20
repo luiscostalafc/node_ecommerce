@@ -1,5 +1,5 @@
 import Factory from '@ioc:Adonis/Lucid/Factory'
-import ProductAplication from 'App/Models/ProductAplication'
+import ProductAplication from 'App/Models/ProductApplication'
 // import { randomProductId } from './ProductFactoryFactory'
 
 export const ProductAplicationFactory = Factory

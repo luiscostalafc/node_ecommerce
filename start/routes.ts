@@ -37,7 +37,7 @@ Route
     Route.resource('permissions','PermissionsController').apiOnly()
     Route.resource('phones','PhonesController').apiOnly()
     Route.resource('products','ProductsController').apiOnly()
-    Route.resource('product_aplications','ProductAplicationsController').apiOnly()
+    Route.resource('product_applications','ProductApplicationsController').apiOnly()
     Route.resource('product_asingment','ProductAsingmentsController').apiOnly()
     Route.resource('product_description','ProductDescriptionsController').apiOnly()
     Route.resource('product_dimension','ProductDimensionsController').apiOnly()

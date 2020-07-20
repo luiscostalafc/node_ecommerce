@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Application from '@ioc:Adonis/Core/Application'
 
 import AssetsRepository from 'App/Repositories/AssetsRepository'
 import { AssetSchema } from 'App/Validators'
@@ -26,7 +27,6 @@ export default class AssetsController {
       await request.validate({schema: AssetSchema})
     } catch (error) {
       const msg = error.messages.errors.map(e => `${e.field} is ${e.rule}`).join(', ')
-      // console.log(error.messages.errors)
       return response
         .safeHeader('returnType', 'error')
         .safeHeader('message', 'Validation error')
@@ -35,7 +35,28 @@ export default class AssetsController {
         .json({})
     }
 
-    const register = await this.repository.create(request.all())
+    const file = request.file('file')
+    if (!file) {
+      return response
+        .safeHeader('returnType', 'error')
+        .safeHeader('message', 'Validation error')
+        .safeHeader('contentError', 'File not found')
+        .status(422)
+        .json({})
+    }
+
+    const path = `${new Date().getTime()}.${file.extname}`
+    const fileData = {
+      asset: file.clientName,
+      mime: file.extname,
+      path,
+    }
+
+    await file.move(Application.tmpPath('uploads'), {
+      name: path,
+    })
+
+    const register = await this.repository.create(fileData)
     const { data, statusCode, returnType, message, contentError } = register
     return response
       .safeHeader('returnType', returnType)

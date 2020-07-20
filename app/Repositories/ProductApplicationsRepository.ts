@@ -2,9 +2,9 @@
 import Logger from '@ioc:Adonis/Core/Logger'
 
 import { first, all, create, findAndUpdate, find, createOrUpdate, findAndDelete } from '../Services/CRUD'
-import ProductAplication from 'App/Models/ProductAplication'
+import ProductApplication from 'App/Models/ProductApplication'
 
-class ProductAplicationsRepository {
+class ProductApplicationsRepository {
   protected model: any
   protected obj = []
   protected contentError = []
@@ -17,7 +17,7 @@ class ProductAplicationsRepository {
   }
 
   constructor () {
-    this.model = ProductAplication
+    this.model = ProductApplication
   }
 
   async first () {
@@ -49,4 +49,4 @@ class ProductAplicationsRepository {
   }
 }
 
-export default new ProductAplicationsRepository()
+export default new ProductApplicationsRepository()

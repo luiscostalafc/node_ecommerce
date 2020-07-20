@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-import ProductAplicationsRepository from 'App/Repositories/ProductAplicationsRepository'
-import { ProductAplicationSchema } from 'App/Validators'
+import ProductApplicationsRepository from 'App/Repositories/ProductApplicationsRepository'
+import { ProductApplicationSchema } from 'App/Validators'
 
-export default class ProductAplicationsController {
+export default class ProductApplicationsController {
   private readonly repository
   constructor () {
-    this.repository = ProductAplicationsRepository
+    this.repository = ProductApplicationsRepository
   }
 
   async index ({ response }: HttpContextContract) {
@@ -23,7 +23,7 @@ export default class ProductAplicationsController {
 
   async store ({ request, response }: HttpContextContract) {
     try {
-      await request.validate({schema: ProductAplicationSchema})
+      await request.validate({schema: ProductApplicationSchema})
     } catch (error) {
       const msg = error.messages.errors.map(e => `${e.field} is ${e.rule}`).join(', ')
       // console.log(error.messages.errors)
@@ -58,7 +58,7 @@ export default class ProductAplicationsController {
 
   async update ({ params, request, response }: HttpContextContract) {
     try {
-      await request.validate({schema: ProductAplicationSchema})
+      await request.validate({schema: ProductApplicationSchema})
     } catch (error) {
       const msg = error.messages.errors.map(e => `${e.field} is ${e.rule}`).join(', ')
       return response
