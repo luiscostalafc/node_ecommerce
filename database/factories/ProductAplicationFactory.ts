@@ -1,10 +1,10 @@
 import Factory from '@ioc:Adonis/Lucid/Factory'
 import ProductAplication from 'App/Models/ProductApplication'
-// import { randomProductId } from './ProductFactoryFactory'
+import { randomProductId } from './ProductFactoryFactory'
 
 export const ProductAplicationFactory = Factory
-  .define(ProductAplication, ({ faker }) => ({
-    // product_id: randomProductId,
+  .define(ProductAplication, async ({ faker }) => ({
+    product_id: await randomProductId(),
     automaker: faker.random.arrayElement(['GM', 'Renault', 'Ferrari', 'Dodge']),
     model: faker.name.title(),
     year_start: faker.random.number(2035),
@@ -16,7 +16,11 @@ export const ProductAplicationFactory = Factory
   }))
   .build()
 
-export const randomProductAplicationId = async () => {
-  const find = await ProductAplication.first()
-  return find?.id
+export async function randomProductAplicationId () {
+  const req = await ProductAplication.query().select('id')
+  if (!req) {
+    return 0
+  }
+  const ids = req.map(r => r.id)
+  return ids[Math.floor(Math.random() * ids.length)]
 }

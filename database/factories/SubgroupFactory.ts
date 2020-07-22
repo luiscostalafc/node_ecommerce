@@ -9,7 +9,11 @@ export const SubgroupFactory = Factory
   })
   .build()
 
-export const randomSubgroupId = async () => {
-  const find = await Subgroup.first()
-  return find?.id
+export async function randomSubgroupId () {
+  const req = await Subgroup.query().select('id')
+  if (!req) {
+    return 0
+  }
+  const ids = req.map(r => r.id)
+  return ids[Math.floor(Math.random() * ids.length)]
 }

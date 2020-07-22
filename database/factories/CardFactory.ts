@@ -3,7 +3,7 @@ import Card from 'App/Models/Card'
 
 export const CardFactory = Factory
   .define(Card, ({ faker }) => ({
-    card_faker: faker.finance.mask(10),
+    card_number: faker.finance.mask(10),
     brand: faker.random.arrayElement(['visa', 'mastercard']),
     cvv: String(faker.random.number(999)),
     expiration_month: faker.random.number(12),
@@ -15,7 +15,11 @@ export const CardFactory = Factory
   }))
   .build()
 
-export const randomCardId = async () => {
-  const find = await Card.first()
-  return find?.id
+export async function randomCardId () {
+  const req = await Card.query().select('id')
+  if (!req) {
+    return 0
+  }
+  const ids = req.map(r => r.id)
+  return ids[Math.floor(Math.random() * ids.length)]
 }

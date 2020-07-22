@@ -9,7 +9,11 @@ export const OperationFactory = Factory
   })
   .build()
 
-export const randomOperationId = async () => {
-  const find = await Operation.first()
-  return find?.id
+export async function randomOperationId () {
+  const req = await Operation.query().select('id')
+  if (!req) {
+    return 0
+  }
+  const ids = req.map(r => r.id)
+  return ids[Math.floor(Math.random() * ids.length)]
 }

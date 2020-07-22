@@ -9,7 +9,11 @@ export const PermissionFactory = Factory
   })
   .build()
 
-export const randomPermissionId = async () => {
-  const find = await Permission.first()
-  return find?.id
+export async function randomPermissionId () {
+  const req = await Permission.query().select('id')
+  if (!req) {
+    return 0
+  }
+  const ids = req.map(r => r.id)
+  return ids[Math.floor(Math.random() * ids.length)]
 }

@@ -3,6 +3,6 @@ import { PhoneFactory } from 'Database/factories'
 
 export default class PhoneSeeder extends BaseSeeder {
   public async run () {
-    PhoneFactory.createMany(10)
+    await PhoneFactory.createMany(10)
   }
 }

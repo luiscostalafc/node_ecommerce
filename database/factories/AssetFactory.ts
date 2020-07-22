@@ -6,12 +6,16 @@ export const AssetFactory = Factory
     return ({
       asset: faker.system.fileName(),
       mime: faker.system.mimeType(),
-      path: faker.system.filePath(),
+      path: `${new Date().getTime()}.jpg`,
     })
   })
   .build()
 
-export const randomAssetId = async () => {
-  const find = await Asset.first()
-  return find?.id
+export async function randomAssetId () {
+  const req = await Asset.query().select('id')
+  if (!req) {
+    return 0
+  }
+  const ids = req.map(r => r.id)
+  return ids[Math.floor(Math.random() * ids.length)]
 }

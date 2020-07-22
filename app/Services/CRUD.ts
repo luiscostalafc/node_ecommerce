@@ -117,21 +117,11 @@ export async function create (Model, body: any) {
 }
 
 export async function createOrUpdate (Model, id, body: any) {
-  const registry = await Model.where('id', id).limit(1)
-  if (!registry) {
-    try {
-      data = await Model.create(body)
-    } catch (error) {
-      logError('createOrUpdate', error)
-      contentError = error
-    }
-  } else {
-    try {
-      data = registry.update(body)
-    } catch (error) {
-      logError('createOrUpdate', error)
-      contentError = error
-    }
+  try {
+    data = Model.updateOrCreate({ id } ,body)
+  } catch (error) {
+    logError('createOrUpdate', error)
+    contentError = error
   }
 
   statusCode = getSatusCode(contentError, 'create')

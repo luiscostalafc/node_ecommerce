@@ -9,7 +9,11 @@ export const GroupFactory = Factory
   })
   .build()
 
-export const randomGroupId = async () => {
-  const find = await Group.first()
-  return find?.id
+export async function randomGroupId () {
+  const req = await Group.query().select('id')
+  if (!req) {
+    return 0
+  }
+  const ids = req.map(r => r.id)
+  return ids[Math.floor(Math.random() * ids.length)]
 }

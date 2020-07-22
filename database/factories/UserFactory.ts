@@ -19,7 +19,11 @@ export const UserFactory = Factory
   })
   .build()
 
-export const randomUserId = async () => {
-  const find = await User.first()
-  return find?.id
+export async function randomUserId () {
+  const req = await User.query().select('id')
+  if (!req) {
+    return 0
+  }
+  const ids = req.map(r => r.id)
+  return ids[Math.floor(Math.random() * ids.length)]
 }

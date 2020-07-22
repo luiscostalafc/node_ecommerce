@@ -3,6 +3,6 @@ import { OrderDetailFactory } from 'Database/factories'
 
 export default class OrderDetailSeeder extends BaseSeeder {
   public async run () {
-    OrderDetailFactory.createMany(10)
+    await OrderDetailFactory.createMany(10)
   }
 }

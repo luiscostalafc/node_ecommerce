@@ -9,7 +9,11 @@ export const OrderStatusFactory = Factory
   })
   .build()
 
-export const randomOrderStatusId = async () => {
-  const find = await OrderStatus.first()
-  return find?.id
+export async function randomOrderStatusId () {
+  const req = await OrderStatus.query().select('id')
+  if (!req) {
+    return 0
+  }
+  const ids = req.map(r => r.id)
+  return ids[Math.floor(Math.random() * ids.length)]
 }

@@ -10,7 +10,11 @@ export const DeliveryFactory = Factory
   })
   .build()
 
-export const randomDeliveryId = async () => {
-  const find = await Delivery.first()
-  return find?.id
+export async function randomDeliveryId () {
+  const req = await Delivery.query().select('id')
+  if (!req) {
+    return 0
+  }
+  const ids = req.map(r => r.id)
+  return ids[Math.floor(Math.random() * ids.length)]
 }

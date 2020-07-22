@@ -3,6 +3,6 @@ import { ProductAplicationFactory } from 'Database/factories'
 
 export default class ProductAplicationSeeder extends BaseSeeder {
   public async run () {
-    ProductAplicationFactory.createMany(10)
+    await ProductAplicationFactory.createMany(10)
   }
 }

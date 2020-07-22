@@ -3,6 +3,6 @@ import { GroupFactory } from 'Database/factories'
 
 export default class GroupSeeder extends BaseSeeder {
   public async run () {
-    GroupFactory.createMany(10)
+    await GroupFactory.createMany(10)
   }
 }

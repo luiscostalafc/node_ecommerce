@@ -17,7 +17,11 @@ export const AddressFactory = Factory
   }))
   .build()
 
-export const randomAddressId = async () => {
-  const find = await Address.first()
-  return find?.id
+export async function randomAddressId () {
+  const req = await Address.query().select('id')
+  if (!req) {
+    return 0
+  }
+  const ids = req.map(r => r.id)
+  return ids[Math.floor(Math.random() * ids.length)]
 }

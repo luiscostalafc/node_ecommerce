@@ -3,6 +3,6 @@ import { DeliveryFactory } from 'Database/factories'
 
 export default class DeliverySeeder extends BaseSeeder {
   public async run () {
-    DeliveryFactory.createMany(10)
+    await DeliveryFactory.createMany(10)
   }
 }

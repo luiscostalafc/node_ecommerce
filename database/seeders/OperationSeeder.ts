@@ -3,6 +3,6 @@ import { OperationFactory } from 'Database/factories'
 
 export default class OperationSeeder extends BaseSeeder {
   public async run () {
-    OperationFactory.createMany(10)
+    await OperationFactory.createMany(10)
   }
 }

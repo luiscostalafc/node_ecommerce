@@ -3,6 +3,6 @@ import { AddressFactory } from 'Database/factories'
 
 export default class AddressSeeder extends BaseSeeder {
   public async run () {
-    AddressFactory.createMany(10)
+    await AddressFactory.createMany(10)
   }
 }

@@ -10,7 +10,11 @@ export const UserGroupFactory = Factory
   })
   .build()
 
-export const randomUserGroupId = async () => {
-  const find = await UserGroup.first()
-  return find?.id
+export async function randomUserGroupId () {
+  const req = await UserGroup.query().select('id')
+  if (!req) {
+    return 0
+  }
+  const ids = req.map(r => r.id)
+  return ids[Math.floor(Math.random() * ids.length)]
 }

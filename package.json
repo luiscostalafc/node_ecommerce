@@ -4,6 +4,9 @@
   "private": true,
   "scripts": {
     "build": "node ace build",
+    "up": "docker-compose up -d",
+    "migrate": "node ace migration:run",
+    "seed": "node ace db:seed --file=_DatabaseSeeder",
     "start": "node ace serve --watch",
     "lint": "eslint . --ext=.ts",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",

@@ -3,6 +3,6 @@ import { PermissionFactory } from 'Database/factories'
 
 export default class PermissionSeeder extends BaseSeeder {
   public async run () {
-    PermissionFactory.createMany(10)
+    await PermissionFactory.createMany(10)
   }
 }

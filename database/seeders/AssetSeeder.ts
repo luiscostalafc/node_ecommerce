@@ -3,6 +3,6 @@ import { AssetFactory } from 'Database/factories'
 
 export default class AssetSeeder extends BaseSeeder {
   public async run () {
-    AssetFactory.createMany(10)
+    await AssetFactory.createMany(10)
   }
 }

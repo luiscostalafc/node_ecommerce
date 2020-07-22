@@ -12,7 +12,11 @@ export const PhoneFactory = Factory
   }))
   .build()
 
-export const randomPhoneId = async () => {
-  const find = await Phone.first()
-  return find?.id
+export async function randomPhoneId () {
+  const req = await Phone.query().select('id')
+  if (!req) {
+    return 0
+  }
+  const ids = req.map(r => r.id)
+  return ids[Math.floor(Math.random() * ids.length)]
 }
