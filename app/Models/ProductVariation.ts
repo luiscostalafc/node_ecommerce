@@ -2,7 +2,7 @@ import { DateTime } from 'luxon'
 import { BaseModel, column, hasOne, HasOne } from '@ioc:Adonis/Lucid/Orm'
 import Product from './Product'
 
-export default class ProductDimension extends BaseModel {
+export default class ProductVariation extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
@@ -16,25 +16,7 @@ export default class ProductDimension extends BaseModel {
   public product_id: number
 
   @column()
-  public size: number
-
-  @column()
-  public height: number
-
-  @column()
-  public width: number
-
-  @column()
-  public lenth: number
-
-  @column()
-  public weight: number
-
-  @column()
-  public inner_diameter: number
-
-  @column()
-  public external_diameter: number
+  public product_variation: string
 
   @hasOne(() => Product)
   public product: HasOne<typeof Product>

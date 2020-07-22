@@ -1,5 +1,6 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, ManyToMany, manyToMany } from '@ioc:Adonis/Lucid/Orm'
+import User from './User'
 
 export default class Card extends BaseModel {
   @column({ isPrimary: true })
@@ -37,4 +38,9 @@ export default class Card extends BaseModel {
 
   @column()
   public holder_birth_date: Date
+
+  @manyToMany(() => User, {
+    pivotTable: 'groups_has_users',
+  })
+  public user: ManyToMany<typeof User>
 }

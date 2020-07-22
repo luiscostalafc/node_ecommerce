@@ -1,5 +1,7 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, hasMany, HasMany, manyToMany, ManyToMany } from '@ioc:Adonis/Lucid/Orm'
+import Product from './Product'
+import Group from './Group'
 
 export default class Subgroup extends BaseModel {
   @column({ isPrimary: true })
@@ -13,4 +15,12 @@ export default class Subgroup extends BaseModel {
 
   @column()
   public subgroup: string
+
+  @hasMany(() => Product)
+  public product: HasMany<typeof Product>
+
+  @manyToMany(() => Group, {
+    pivotTable: 'products',
+  })
+  public group: ManyToMany<typeof Group>
 }

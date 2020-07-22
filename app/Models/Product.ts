@@ -1,7 +1,14 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, hasOne, HasOne } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, hasOne, HasOne, manyToMany, ManyToMany, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
 import Group from './Group'
 import Subgroup from './Subgroup'
+import Asset from './Asset'
+import ProductApplication from './ProductApplication'
+import ProductDimension from './ProductDimension'
+import ProductDescription from './ProductDescription'
+import ProductAsingment from './ProductAsingment'
+import StockOperation from './StockOperation'
+import ProductVariation from './ProductVariation'
 
 export default class Product extends BaseModel {
   @column({ isPrimary: true })
@@ -27,4 +34,27 @@ export default class Product extends BaseModel {
 
   @hasOne(() => Subgroup)
   public subgroup: HasOne<typeof Subgroup>
+
+  @hasOne(() => ProductApplication)
+  public productApplication: HasOne<typeof ProductApplication>
+
+  @hasOne(() => ProductDimension)
+  public productDimension: HasOne<typeof ProductDimension>
+
+  @hasOne(() => ProductDescription)
+  public productDescription: HasOne<typeof ProductDescription>
+
+  @hasOne(() => ProductAsingment)
+  public productAsingment: HasOne<typeof ProductAsingment>
+
+  @hasOne(() => ProductVariation)
+  public productVariations: HasOne<typeof ProductVariation>
+
+  @hasMany(() => StockOperation)
+  public stockOperation: HasMany<typeof StockOperation>
+
+  @manyToMany(() => Asset, {
+    pivotTable: 'products_has_assets',
+  })
+  public asset: ManyToMany<typeof Asset>
 }

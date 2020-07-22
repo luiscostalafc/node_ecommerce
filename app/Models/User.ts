@@ -1,6 +1,12 @@
 import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
-import { BaseModel, column, beforeSave } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, beforeSave, manyToMany, ManyToMany, hasOne, HasOne } from '@ioc:Adonis/Lucid/Orm'
+import Card from './Card'
+import Address from './Address'
+import Permission from './Permission'
+import UserGroup from './UserGroup'
+import Phone from './Phone'
+import Order from './Order'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -54,4 +60,32 @@ export default class User extends BaseModel {
       user.password = await Hash.make(user.password)
     }
   }
+
+  @manyToMany(() => Address, {
+    pivotTable: 'addresses_has_users',
+  })
+  public address: ManyToMany<typeof Address>
+
+  @manyToMany(() => Card, {
+    pivotTable: 'cards_has_users',
+  })
+  public card: ManyToMany<typeof Card>
+
+  @manyToMany(() => Permission, {
+    pivotTable: 'users_has_permissions',
+  })
+  public permission: ManyToMany<typeof Permission>
+
+  @manyToMany(() => UserGroup, {
+    pivotTable: 'groups_has_users',
+  })
+  public userGroup: ManyToMany<typeof UserGroup>
+
+  @manyToMany(() => Phone, {
+    pivotTable: 'users_has_phones',
+  })
+  public phone: ManyToMany<typeof Phone>
+
+  @hasOne(() => Order)
+  public order: HasOne<typeof Order>
 }

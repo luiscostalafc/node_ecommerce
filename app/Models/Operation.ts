@@ -1,5 +1,7 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, hasMany, HasMany, manyToMany, ManyToMany } from '@ioc:Adonis/Lucid/Orm'
+import StockOperation from './StockOperation'
+import Product from './Product'
 
 export default class Operation extends BaseModel {
   @column({ isPrimary: true })
@@ -13,4 +15,12 @@ export default class Operation extends BaseModel {
 
   @column()
   public operation: string
+
+  @hasMany(() => StockOperation)
+  public stockOperation: HasMany<typeof StockOperation>
+
+  @manyToMany(() => Product, {
+    pivotTable: 'stock_operations',
+  })
+  public product: ManyToMany<typeof Product>
 }

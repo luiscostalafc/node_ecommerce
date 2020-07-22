@@ -2,7 +2,7 @@ import { DateTime } from 'luxon'
 import { BaseModel, column, ManyToMany, manyToMany } from '@ioc:Adonis/Lucid/Orm'
 import User from './User'
 
-export default class Address extends BaseModel {
+export default class UserGroup extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
@@ -13,37 +13,10 @@ export default class Address extends BaseModel {
   public updatedAt: DateTime
 
   @column()
-  public cep: string
+  public group: string
 
   @column()
-  public zone: string
-
-  @column()
-  public state: string
-
-  @column()
-  public city: string
-
-  @column()
-  public country: string
-
-  @column()
-  public district: string
-
-  @column()
-  public street: string
-
-  @column()
-  public number: string
-
-  @column()
-  public complement: string
-
-  @column()
-  public delivery: boolean
-
-  @column()
-  public inactive: boolean
+  public is_visible: boolean
 
   @manyToMany(() => User, {
     pivotTable: 'groups_has_users',
