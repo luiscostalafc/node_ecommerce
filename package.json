@@ -1,13 +1,13 @@
 {
   "name": "backend",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "scripts": {
     "build": "node ace build",
     "up": "docker-compose up -d",
     "migrate": "node ace migration:run",
     "seed": "node ace db:seed --file=_DatabaseSeeder",
-    "start": "node ace serve --watch",
+    "dev": "node ace serve --watch",
     "lint": "eslint . --ext=.ts",
     "release:major": "standard-version --release-as major",
     "release:minor": "standard-version --release-as minor",

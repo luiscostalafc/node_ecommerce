@@ -25,6 +25,7 @@ Route.get('/', async () => {
 })
 Route.post('/login', 'AuthController.login')
 Route.post('/logout', 'AuthController.logout')
+Route.post('/users','UsersController.store')
 
 Route
   .group(() => {
@@ -51,5 +52,8 @@ Route
     Route.resource('users','UsersController').apiOnly()
     Route.resource('user_groups','UserGroupsController').apiOnly()
   })
-  .prefix('/v1')
+  .prefix('/api')
   .middleware('auth')
+
+
+
